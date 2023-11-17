@@ -32,6 +32,9 @@ data class QuranEdition(
     @Json(name = "revelationType")
     val revelationType: String? = null,
 
+    @Json(name = "numberOfAyahs")
+    val numberOfAyahs: Int? = null,
+
     @Json(name = "ayahs")
     val listAyahs: List<AyahsItem>? = null,
 
