@@ -4,15 +4,19 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.nori.quranapp.databinding.ItemAyahBinding
-import com.nori.quranapp.databinding.ItemSurahBinding
+import com.nori.quranapp.network.quran.Ayah
 import com.nori.quranapp.network.quran.AyahsItem
 import com.nori.quranapp.network.quran.QuranEdition
 
 class SurahAdapter : RecyclerView.Adapter<SurahAdapter.ViewHolder>() {
-    private val listAyah = ArrayList<AyahsItem>()
+    private val listAyah = ArrayList<Ayah>()
     private val listEdition = ArrayList<QuranEdition>()
+    private var onItemClickCallback: OnItemClickCallback? = null
 
-    fun setData(dataAyah: List<AyahsItem>?, dataEdition: List<QuranEdition>?){
+    fun setOnItemClickCallback(onItemClickCallback: OnItemClickCallback) {
+        this.onItemClickCallback = onItemClickCallback
+    }
+    fun setData(dataAyah: List<Ayah>?, dataEdition: List<QuranEdition>?){
         if (dataAyah == null || dataEdition == null) return
         listAyah.clear()
         listAyah.addAll(dataAyah)
@@ -39,4 +43,7 @@ class SurahAdapter : RecyclerView.Adapter<SurahAdapter.ViewHolder>() {
         }
     }
 
+    interface OnItemClickCallback {
+        fun onItemClicked(data: Ayah)
+    }
 }
