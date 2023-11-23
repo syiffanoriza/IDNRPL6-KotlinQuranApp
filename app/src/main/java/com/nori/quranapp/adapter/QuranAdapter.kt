@@ -1,16 +1,19 @@
 package com.nori.quranapp.adapter
 
+import android.content.Intent
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.nori.quranapp.databinding.ItemSurahBinding
+import com.nori.quranapp.network.quran.Surah
 import com.nori.quranapp.network.quran.SurahItem
+import com.nori.quranapp.presentation.quran.DetailSurahActivity
 
 class QuranAdapter: RecyclerView.Adapter<QuranAdapter.SurahViewHolder>() {
     class SurahViewHolder(val binding: ItemSurahBinding): RecyclerView.ViewHolder(binding.root)
-    private val listSurah = ArrayList<SurahItem>()
+    private val listSurah = ArrayList<Surah>()
 
-    fun setData(list: List<SurahItem>?){
+    fun setData(list: List<Surah>?){
         if (list == null) return
         listSurah.clear()
         listSurah.addAll(list)
@@ -32,6 +35,12 @@ class QuranAdapter: RecyclerView.Adapter<QuranAdapter.SurahViewHolder>() {
             tvAyah.text = resultOfAyah
             tvName.text = data.name
             tvNumber.text = data.number.toString()
+
+            this.root.setOnClickListener {
+                val intent = Intent(it.context, DetailSurahActivity::class.java)
+                intent.putExtra(DetailSurahActivity.EXTRA_DATA, data)
+                it.context.startActivity(intent)
+            }
         }
     }
 
