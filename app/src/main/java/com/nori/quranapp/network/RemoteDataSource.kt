@@ -2,6 +2,8 @@ package com.nori.quranapp.network
 
 import android.util.Log
 import com.nori.quranapp.network.adzan.AdzanApiService
+import com.nori.quranapp.network.adzan.CityItem
+import com.nori.quranapp.network.adzan.ScheduleItem
 import com.nori.quranapp.network.quran.QuranApiService
 import com.nori.quranapp.network.quran.QuranEditionItem
 import com.nori.quranapp.network.quran.SurahItem
@@ -41,6 +43,41 @@ class RemoteDataSource (
                 Log.e(
                     RemoteDataSource::class.java.simpleName,
                     "getListSurah: " + e.localizedMessage
+                )
+            }
+        }.flowOn(Dispatchers.IO)
+
+    suspend fun searchCity(city: String): Flow<NetworkResponse<List<CityItem>>> =
+        flow<NetworkResponse<List<CityItem>>> {
+            try {
+                val cityResponse = adzanApiService.searchCity(city)
+                val listCity = cityResponse.dataCity
+                emit(NetworkResponse.Success(listCity))
+            } catch (e: Exception) {
+                emit(NetworkResponse.Error(e.toString()))
+                Log.e(
+                    RemoteDataSource::class.java.simpleName,
+                    "getListCity: " + e.localizedMessage
+                )
+            }
+        }.flowOn(Dispatchers.IO)
+
+    suspend fun getDailyAdzanTime(
+        id: String,
+        year: String,
+        month: String,
+        date: String
+    ): Flow<NetworkResponse<ScheduleItem>> =
+        flow {
+            try {
+                val dailyResponse = adzanApiService.getDailyAdzanTime(id, year, month, date)
+                val dailyAdzanTime = dailyResponse.dailyData.scheduleItem
+                emit(NetworkResponse.Success(dailyAdzanTime))
+            } catch (e: Exception) {
+                emit(NetworkResponse.Error(e.toString()))
+                Log.e(
+                    RemoteDataSource::class.java.simpleName,
+                    "getListCity: " + e.localizedMessage
                 )
             }
         }.flowOn(Dispatchers.IO)

@@ -1,5 +1,9 @@
 package com.nori.quranapp.utils
 
+import com.nori.quranapp.network.adzan.City
+import com.nori.quranapp.network.adzan.CityItem
+import com.nori.quranapp.network.adzan.DailyAdzan
+import com.nori.quranapp.network.adzan.ScheduleItem
 import com.nori.quranapp.network.quran.Ayah
 import com.nori.quranapp.network.quran.AyahsItem
 import com.nori.quranapp.network.quran.QuranEdition
@@ -60,5 +64,32 @@ object DataMapper {
         return listAyah
     }
 
-//    @JvmName("mapCityResponseToDomain")
+    @JvmName("mapCityResponseToDomain")
+    fun mapResponseToDomain(input: List<CityItem>): Flow<List<City>> {
+        val listCity = ArrayList<City>()
+        input.map {
+            val city = City(
+                location = it.location,
+                id = it.id
+            )
+            listCity.add(city)
+        }
+        return flowOf(listCity)
+    }
+
+    @JvmName("mapDailyResponseToDomain")
+    fun mapResponseToDomain(input: ScheduleItem): Flow<DailyAdzan> {
+        val dailyAdzan = DailyAdzan(
+            date = input.date,
+            imsak = input.imsak,
+            rise = input.rise,
+            fajr = input.fajr,
+            duha = input.duha,
+            zuhr = input.zuhr,
+            asr = input.asr,
+            maghrib = input.maghrib,
+            isha = input.isha
+        )
+        return flowOf(dailyAdzan)
+    }
 }

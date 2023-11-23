@@ -3,7 +3,9 @@ package com.nori.quranapp.presentation
 import android.content.Context
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
+import com.nori.quranapp.network.di.Injection.provideAdzanRepository
 import com.nori.quranapp.network.di.Injection.provideQuranRepository
+import com.nori.quranapp.presentation.adzan.AdzanViewModel
 import com.nori.quranapp.presentation.quran.QuranViewModel
 
 @Suppress("UNCHECKED_CAST")

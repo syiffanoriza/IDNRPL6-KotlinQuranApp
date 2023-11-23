@@ -1,5 +1,6 @@
 package com.nori.quranapp.network
 
+import com.nori.quranapp.network.adzan.AdzanApiService
 import com.nori.quranapp.network.quran.QuranApiService
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
@@ -22,4 +23,6 @@ object ApiConfig {
     }
 
     val getQuranService = createService<QuranApiService>("https://api.alquran.cloud/v1/")
+
+    val getAdzanTimeService = createService<AdzanApiService>("https://api.myquran.com/v1/")
 }
