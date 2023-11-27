@@ -3,7 +3,7 @@ package com.nori.quranapp.utils
 import com.nori.quranapp.network.adzan.City
 import com.nori.quranapp.network.adzan.CityItem
 import com.nori.quranapp.network.adzan.DailyAdzan
-import com.nori.quranapp.network.adzan.ScheduleItem
+import com.nori.quranapp.network.adzan.JadwalItem
 import com.nori.quranapp.network.quran.Ayah
 import com.nori.quranapp.network.quran.AyahsItem
 import com.nori.quranapp.network.quran.QuranEdition
@@ -78,17 +78,18 @@ object DataMapper {
     }
 
     @JvmName("mapDailyResponseToDomain")
-    fun mapResponseToDomain(input: ScheduleItem): Flow<DailyAdzan> {
+    fun mapResponseToDomain(input: JadwalItem): Flow<DailyAdzan> {
         val dailyAdzan = DailyAdzan(
             date = input.date,
             imsak = input.imsak,
-            rise = input.rise,
-            fajr = input.fajr,
-            duha = input.duha,
-            zuhr = input.zuhr,
-            asr = input.asr,
+            terbit = input.terbit,
+            subuh = input.subuh,
+            dhuha = input.dhuha,
+            dzuhur = input.dzuhur,
+            ashar = input.ashar,
             maghrib = input.maghrib,
-            isha = input.isha
+            isya = input.isya,
+            tanggal = input.tanggal
         )
         return flowOf(dailyAdzan)
     }

@@ -40,12 +40,12 @@ class AdzanRepository (
         month: String,
         date: String
     ): Flow<Resource<DailyAdzan>> {
-        return object : NetworkBoundResource<DailyAdzan, ScheduleItem>() {
-            override fun fetchFromNetwork(data: ScheduleItem): Flow<DailyAdzan> {
+        return object : NetworkBoundResource<DailyAdzan, JadwalItem>() {
+            override fun fetchFromNetwork(data: JadwalItem): Flow<DailyAdzan> {
                 return DataMapper.mapResponseToDomain(data)
             }
 
-            override suspend fun createCall(): Flow<NetworkResponse<ScheduleItem>> {
+            override suspend fun createCall(): Flow<NetworkResponse<JadwalItem>> {
                 return remoteDataSource.getDailyAdzanTime(id, year, month, date)
 
             }

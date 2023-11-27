@@ -3,7 +3,7 @@ package com.nori.quranapp.network
 import android.util.Log
 import com.nori.quranapp.network.adzan.AdzanApiService
 import com.nori.quranapp.network.adzan.CityItem
-import com.nori.quranapp.network.adzan.ScheduleItem
+import com.nori.quranapp.network.adzan.JadwalItem
 import com.nori.quranapp.network.quran.QuranApiService
 import com.nori.quranapp.network.quran.QuranEditionItem
 import com.nori.quranapp.network.quran.SurahItem
@@ -67,11 +67,11 @@ class RemoteDataSource (
         year: String,
         month: String,
         date: String
-    ): Flow<NetworkResponse<ScheduleItem>> =
+    ): Flow<NetworkResponse<JadwalItem>> =
         flow {
             try {
                 val dailyResponse = adzanApiService.getDailyAdzanTime(id, year, month, date)
-                val dailyAdzanTime = dailyResponse.dailyData.scheduleItem
+                val dailyAdzanTime = dailyResponse.dailyData.jadwalItem
                 emit(NetworkResponse.Success(dailyAdzanTime))
             } catch (e: Exception) {
                 emit(NetworkResponse.Error(e.toString()))

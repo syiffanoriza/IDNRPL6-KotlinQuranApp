@@ -14,8 +14,8 @@ data class DailyResponse(
 
 @JsonClass(generateAdapter = true)
 data class DailyData(
-    @Json(name = "schedule")
-    val scheduleItem: ScheduleItem,
+    @Json(name = "jadwal")
+    val jadwalItem: JadwalItem,
 
     @Json(name = "location")
     val location: String? = null,
@@ -28,31 +28,34 @@ data class DailyData(
 )
 
 @JsonClass(generateAdapter = true)
-data class ScheduleItem(
+data class JadwalItem(
     @Json(name = "date")
     val date: String? = null,
 
     @Json(name = "imsak")
     val imsak: String? = null,
 
-    @Json(name = "rise")
-    val rise: String? = null,
+    @Json(name = "terbit")
+    val terbit: String? = null,
 
-    @Json(name = "fajr")
-    val fajr: String? = null,
+    @Json(name = "subuh")
+    val subuh: String? = null,
 
-    @Json(name = "duha")
-    val duha: String? = null,
+    @Json(name = "dhuha")
+    val dhuha: String? = null,
 
-    @Json(name = "zuhr")
-    val zuhr: String? = null,
+    @Json(name = "dzuhur")
+    val dzuhur: String? = null,
 
-    @Json(name = "asr")
-    val asr: String? = null,
+    @Json(name = "ashar")
+    val ashar: String? = null,
 
     @Json(name = "maghrib")
     val maghrib: String? = null,
 
-    @Json(name = "isha")
-    val isha: String? = null,
+    @Json(name = "isya")
+    val isya: String? = null,
+
+    @Json(name = "tanggal")
+    val tanggal: String? = null
 )

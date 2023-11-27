@@ -44,11 +44,11 @@ class AdzanFragment : Fragment() {
                             binding.apply {
                                 adzanTime.data?.let { time ->
                                     tvTimeImsak.text = time.imsak
-                                    tvTimeFajr.text = time.fajr
-                                    tvTimeZuhr.text = time.zuhr
-                                    tvTimeAsr.text = time.asr
+                                    tvTimeFajr.text = time.subuh
+                                    tvTimeZuhr.text = time.dzuhur
+                                    tvTimeAsr.text = time.ashar
                                     tvTimeMaghrib.text = time.maghrib
-                                    tvTimeIsha.text = time.isha
+                                    tvTimeIsha.text = time.isya
                                 }
                             }
                         }
